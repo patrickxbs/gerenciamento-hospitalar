@@ -64,7 +64,7 @@ public class Quarto {
     }
 
     public void ocupar() {
-        if (verificarDisponibilidade())
+        if (!verificarDisponibilidade())
             throw new RuntimeException("Capacidade máxima atingida");
         vagas++;
     }

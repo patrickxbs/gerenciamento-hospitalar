@@ -59,7 +59,7 @@ public class Internacao {
         this.quarto = quarto;
     }
 
-    public void registarAlta() {
+    public void registrarAlta() {
         this.alta = true;
         this.quarto.liberar();
         this.dataAlta = LocalDateTime.now();
