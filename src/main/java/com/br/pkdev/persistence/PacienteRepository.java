@@ -8,6 +8,8 @@ public interface PacienteRepository {
 
     Paciente salvarPaciente(Paciente paciente);
 
+    Paciente buscarPorCpf(String cpf);
+
     List<Paciente> listarPacientes();
 
     void removerPaciente(String cpf);

@@ -13,4 +13,6 @@ public interface QuartoRepository {
     List<Quarto> listarQuartosComVaga();
 
     void criarVariosQuartos(List<Quarto> quartoList);
+
+    Quarto buscarPorNumero(String numero);
 }

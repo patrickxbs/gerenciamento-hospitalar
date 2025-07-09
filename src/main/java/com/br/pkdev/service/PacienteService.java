@@ -24,4 +24,8 @@ public class PacienteService {
     public void removerPaciente(String cpf) {
         pacienteRepository.removerPaciente(cpf);
     }
+
+    public Paciente buscarPorCpf(String cpf) {
+    return pacienteRepository.buscarPorCpf(cpf);
+    }
 }

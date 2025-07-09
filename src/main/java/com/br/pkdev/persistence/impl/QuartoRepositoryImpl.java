@@ -35,4 +35,14 @@ public class QuartoRepositoryImpl implements QuartoRepository {
     public void criarVariosQuartos(List<Quarto> quartoList) {
         quartos.addAll(quartoList);
     }
+
+    @Override
+    public Quarto buscarPorNumero(String numero) {
+        for (Quarto q : quartos) {
+            if (q.getNumero().equalsIgnoreCase(numero)) {
+                return q;
+            }
+        }
+        return null;
+    }
 }

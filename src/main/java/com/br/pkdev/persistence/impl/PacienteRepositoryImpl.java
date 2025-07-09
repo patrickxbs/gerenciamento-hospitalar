@@ -25,4 +25,14 @@ public class PacienteRepositoryImpl implements PacienteRepository {
     public void removerPaciente(String cpf) {
         pacientes.removeIf(p -> p.getCpf().equals(cpf));
     }
+
+    @Override
+    public Paciente buscarPorCpf(String cpf) {
+        for (Paciente p : pacientes) {
+            if (p.getCpf().equals(cpf)) {
+                return p;
+            }
+        }
+        return null;
+    }
 }

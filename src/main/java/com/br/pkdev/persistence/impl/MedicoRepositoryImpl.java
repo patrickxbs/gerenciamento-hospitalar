@@ -26,4 +26,14 @@ public class MedicoRepositoryImpl implements MedicoRepository {
     public List<Medico> listarMedicosPorEspecialidades(Especialidade especialidade) {
         return medicos.stream().filter(m -> m.getEspecialidade().equals(especialidade)).toList();
     }
+
+    @Override
+    public Medico buscarPorCrm(String crm) {
+        for (Medico m : medicos) {
+            if (m.getCrm().equalsIgnoreCase(crm)) {
+                return m;
+            }
+        }
+        return null;
+    }
 }

@@ -25,4 +25,8 @@ public class MedicoService {
     public List<Medico> listarPorEspecialidade(Especialidade especialidade) {
         return medicoGateway.listarMedicosPorEspecialidades(especialidade);
     }
+
+    public Medico buscarPorCrm(String crm) {
+        return medicoGateway.buscarPorCrm(crm);
+    }
 }

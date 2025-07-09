@@ -12,4 +12,6 @@ public interface MedicoRepository {
     List<Medico> listarMedicos();
 
     List<Medico> listarMedicosPorEspecialidades(Especialidade especialidade);
+
+    Medico buscarPorCrm(String crm);
 }
