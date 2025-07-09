@@ -41,7 +41,7 @@ public class MenuPaciente {
                     scanner.nextLine();
                     System.out.println("Qual sua doença:");
                     System.out.println("1 - Virose");
-                    System.out.println("2- Fratura");
+                    System.out.println("2 - Fratura");
                     System.out.println("3 - Dor no Corpo");
                     System.out.println("4 - Alergia");
                     System.out.println("5 - Queimadura");

@@ -78,7 +78,7 @@ public class MenuMedico {
                 case 3:
                     System.out.println("Qual a especialidade listar:");
                     System.out.println("1 - Cardiologistas");
-                    System.out.println("2- Ortopedistas");
+                    System.out.println("2 - Ortopedistas");
                     System.out.println("3 - Neurologistas");
                     System.out.println("4 - Clinicos Gerais");
                     System.out.println("5 - Pediatras");
