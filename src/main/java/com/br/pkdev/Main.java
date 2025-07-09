@@ -8,7 +8,7 @@ import com.br.pkdev.Menus.MenuPaciente;
 import com.br.pkdev.Menus.MenuQuarto;
 import com.br.pkdev.persistence.impl.PacienteRepositoryImpl;
 import com.br.pkdev.persistence.impl.QuartoRepositoryImpl;
-import com.br.pkdev.service.InternacaoSevice;
+import com.br.pkdev.service.InternacaoService;
 import com.br.pkdev.service.MedicoService;
 import com.br.pkdev.service.PacienteService;
 import com.br.pkdev.service.QuartoService;
@@ -21,7 +21,7 @@ public class Main {
         MedicoService medicoService = new MedicoService(new MedicoRepositoryImpl());
         PacienteService pacienteService = new PacienteService(new PacienteRepositoryImpl());
         QuartoService quartoService = new QuartoService(new QuartoRepositoryImpl());
-        InternacaoSevice internacaoSevice = new InternacaoSevice(new InternacaoRepositoryImpl());
+        InternacaoService internacaoSevice = new InternacaoService(new InternacaoRepositoryImpl());
 
         MenuPaciente menuPaciente = new MenuPaciente(pacienteService);
         MenuMedico menuMedico = new MenuMedico(medicoService);

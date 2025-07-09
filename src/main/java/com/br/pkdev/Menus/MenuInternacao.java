@@ -4,7 +4,7 @@ import com.br.pkdev.model.Internacao;
 import com.br.pkdev.model.Medico;
 import com.br.pkdev.model.Paciente;
 import com.br.pkdev.model.Quarto;
-import com.br.pkdev.service.InternacaoSevice;
+import com.br.pkdev.service.InternacaoService;
 import com.br.pkdev.service.MedicoService;
 import com.br.pkdev.service.PacienteService;
 import com.br.pkdev.service.QuartoService;
@@ -13,12 +13,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuInternacao {
-    private final InternacaoSevice internacaoService;
+    private final InternacaoService internacaoService;
     private final PacienteService pacienteService;
     private final MedicoService medicoService;
     private final QuartoService quartoService;
 
-    public MenuInternacao(InternacaoSevice internacaoService, PacienteService pacienteService,
+    public MenuInternacao(InternacaoService internacaoService, PacienteService pacienteService,
                           MedicoService medicoService, QuartoService quartoService) {
         this.internacaoService = internacaoService;
         this.pacienteService = pacienteService;

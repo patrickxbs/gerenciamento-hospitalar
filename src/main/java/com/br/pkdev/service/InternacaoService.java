@@ -5,11 +5,11 @@ import com.br.pkdev.persistence.InternacaoRepository;
 
 import java.util.List;
 
-public class InternacaoSevice {
+public class InternacaoService {
 
     private final InternacaoRepository internacaoRepository;
 
-    public InternacaoSevice(InternacaoRepository internacaoRepository) {
+    public InternacaoService(InternacaoRepository internacaoRepository) {
         this.internacaoRepository = internacaoRepository;
     }
 
