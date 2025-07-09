@@ -20,25 +20,28 @@ public class MenuMedico {
             System.out.print("Escolha uma opção: ");
             
             int opcao = scanner.nextInt();
+            scanner.nextLine();
+
             switch (opcao) {
                 case 1:
-                    System.out.println("Nome: ");
+                    System.out.print("Nome: ");
                     String nome = scanner.nextLine();
-                    System.out.println("CPF: ");
+                    System.out.print("CPF: ");
                     String cpf = scanner.nextLine();
-                    System.out.println("Idade: ");
+                    System.out.print("Idade: ");
                     int idade = scanner.nextInt();
-                    System.out.println("Telefone: ");
+                    scanner.nextLine();
+                    System.out.print("Telefone: ");
                     String telefone = scanner.nextLine();
-                    System.out.println("Gravidade: ");
+                    System.out.print("CRM: ");
                     String crm = scanner.nextLine();
                     System.out.println("Qual a especialidade do Medico:");
                     System.out.println("1 - Cardiologista");
-                    System.out.println("2- Ortopedista");
+                    System.out.println("2 - Ortopedista");
                     System.out.println("3 - Neurologista");
                     System.out.println("4 - Clinico Geral");
                     System.out.println("5 - Pediatra");
-                    System.out.println("Digite um número: ");
+                    System.out.print("Digite um número: ");
                     int num = scanner.nextInt();
                     Especialidade especialidade = null;
                     switch (num) {
@@ -63,9 +66,15 @@ public class MenuMedico {
                     }
                     Medico medico = new Medico(nome, cpf, idade, telefone, crm, especialidade);
                     medicoService.salvarMedico(medico);
-                case 2:
-                    medicoService.listarMedicos();
                     break;
+
+                case 2:
+                    medicoService.listarMedicos().forEach(System.out::println);
+                    if (medicoService.listarMedicos().isEmpty()) {
+                        System.out.println("Não existem medicos cadastrados");
+                    }
+                    break;
+
                 case 3:
                     System.out.println("Qual a especialidade listar:");
                     System.out.println("1 - Cardiologistas");
@@ -96,10 +105,22 @@ public class MenuMedico {
                             System.out.println("Opção inválida");
                             break;
                     }
-                    medicoService.listarPorEspecialidade(especialidadeAux);
+                    if (especialidadeAux == null) {
+                        System.out.println("Especialidade inválida.");
+                        break;
+                    }
+
+                    var lista = medicoService.listarPorEspecialidade(especialidadeAux);
+                    if (lista.isEmpty()) {
+                        System.out.println("Não há médicos cadastrados nessa especialidade.");
+                    } else {
+                        lista.forEach(System.out::println);
+                    }
                     break;
+
                 case 0:
-                    break;
+                    return;
+
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }

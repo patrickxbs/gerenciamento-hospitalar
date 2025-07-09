@@ -1,5 +1,6 @@
 package com.br.pkdev.Menus;
 
+import java.util.List;
 import java.util.Scanner;
 import com.br.pkdev.model.Quarto;
 import com.br.pkdev.model.enums.TipoQuarto;
@@ -20,19 +21,21 @@ public class MenuQuarto {
             System.out.print("Escolha uma opção: ");
             
             int opcao = scanner.nextInt();
+            scanner.nextLine();
             switch (opcao) {
                 case 1:
-                    System.out.println("Numero: ");
+                    System.out.print("Numero: ");
                     String numero = scanner.nextLine();
-                    System.out.println("Capacidade total: ");
+                    System.out.print("Capacidade total: ");
                     int capacidadeTotal = scanner.nextInt();
+                    scanner.nextLine();
                     System.out.println("Qual o tipo de Quarto:");
                     System.out.println("1 - Enfermaria");
-                    System.out.println("2- UTI");
+                    System.out.println("2 - UTI");
                     System.out.println("3 - Isolamento");
                     System.out.println("4 - Pediatrico");
                     System.out.println("5 - Emergencia");
-                    System.out.println("Digite um número: ");
+                    System.out.print("Digite um número: ");
                     int num = scanner.nextInt();
                     TipoQuarto tipoQuarto = null;
                     switch (num) {
@@ -58,14 +61,26 @@ public class MenuQuarto {
                     Quarto quarto = new Quarto(numero, capacidadeTotal, tipoQuarto);
                     quartoService.salvar(quarto);
                     break;
+
                 case 2:
-                    quartoService.listar();
+                    quartoService.listar().forEach(System.out::println);
+                    if (quartoService.listar().isEmpty()) {
+                        System.out.println("Não existem quartos cadastrados");
+                    }
                     break;
+
                 case 3:
-                    quartoService.listarQuartosComVaga();
+                    List<Quarto> quartosComVaga = quartoService.listarQuartosComVaga();
+                    if (quartosComVaga.isEmpty()) {
+                        System.out.println("Não há quartos com vagas disponíveis.");
+                    } else {
+                        quartosComVaga.forEach(System.out::println);
+                        }
                     break;
+
                 case 0:
-                    break;
+                    return;
+
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }

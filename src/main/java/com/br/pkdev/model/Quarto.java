@@ -90,11 +90,7 @@ public class Quarto {
 
     @Override
     public String toString() {
-        return "Quarto{" +
-                "numero='" + numero + '\'' +
-                ", capacidadeTotal=" + capacidadeTotal +
-                ", vagas=" + vagas +
-                ", tipoQuarto=" + tipoQuarto +
-                '}';
+        return "Número: " + numero + ", Capacidade Total: " + capacidadeTotal + ", Vagas Ocupadas: " + vagas + ", Tipo: " + tipoQuarto;
     }
+
 }

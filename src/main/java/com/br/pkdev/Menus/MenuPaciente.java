@@ -24,26 +24,30 @@ public class MenuPaciente {
             System.out.print("Escolha uma opção: ");
             
             int opcao = scanner.nextInt();
+            scanner.nextLine();
             switch (opcao) {
                 case 1:
-                    System.out.println("Nome: ");
+                    System.out.print("Nome: ");
                     String nome = scanner.nextLine();
-                    System.out.println("CPF: ");
+                    System.out.print("CPF: ");
                     String cpf = scanner.nextLine();
-                    System.out.println("Idade: ");
+                    System.out.print("Idade: ");
                     int idade = scanner.nextInt();
-                    System.out.println("Telefone: ");
+                    scanner.nextLine();
+                    System.out.print("Telefone: ");
                     String telefone = scanner.nextLine();
-                    System.out.println("Gravidade: ");
+                    System.out.print("Gravidade: ");
                     int gravidade = scanner.nextInt();
+                    scanner.nextLine();
                     System.out.println("Qual sua doença:");
                     System.out.println("1 - Virose");
                     System.out.println("2- Fratura");
                     System.out.println("3 - Dor no Corpo");
                     System.out.println("4 - Alergia");
                     System.out.println("5 - Queimadura");
-                    System.out.println("Digite um número: ");
+                    System.out.print("Digite um número: ");
                     int num = scanner.nextInt();
+                    scanner.nextLine();
                     Doenca doenca = null;
                     switch (num) {
                         case 1:
@@ -62,26 +66,35 @@ public class MenuPaciente {
                             doenca = Doenca.QUEIMADURA;
                             break;
                         default:
-                            System.out.println("Opção inválida");
-                            break;
+                            System.out.print("Opção inválida. Tente novamente \n");
+                            
                     }
+                    System.out.print("Estado de Saude do Paciente: ");
                     String estadoDeSaude = scanner.nextLine();
                     
                     
                     Paciente paciente = new Paciente(nome, cpf, idade, telefone, gravidade, doenca, estadoDeSaude);
                     pacienteService.cadastrar(paciente);
+                    break;
                     
-                    break;
                 case 2:
-                    pacienteService.pacientes();
+                    pacienteService.pacientes().forEach(System.out::println);
+                    if (pacienteService.pacientes().isEmpty()) {
+                        System.out.println("Não existem pacientes cadastrados");
+                    }
                     break;
+
                 case 3:
                     System.out.println("Informe o cpf: ");
                     String cpfRemovido = scanner.nextLine();
+                    if(pacienteService.buscarPorCpf(cpfRemovido) == null){
+                        System.out.println("Não existe Paciente cadastrado com esse CPF");
+                    }
                     pacienteService.removerPaciente(cpfRemovido);
                     break;
                 case 0:
-                    break;
+                    return;
+
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }

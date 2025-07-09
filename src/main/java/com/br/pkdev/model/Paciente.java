@@ -61,6 +61,12 @@ public class Paciente extends Pessoa{
         }
     }
 
+    @Override
+    public String toString() {
+        return "Nome: " + getNome() + " | CPF: " + getCpf() + " | Idade: " + getIdade() + " | Telefone: " + getTelefone() + " | Gravidade: " + getGravidade() + " | Doença: " + getDoenca() + " | Estado de Saude: " + getEstadoDeSaude();
+    }
+
+
 
     @Override
     public void apresentarDados() {

@@ -40,94 +40,87 @@ public class MenuInternacao {
             scanner.nextLine();
 
             switch (opcao) {
-                case 1:
-                    internarPaciente(scanner);
+                case 1: {
+                    System.out.print("Digite o CPF do paciente: ");
+                    String cpfPaciente = scanner.nextLine();
+                    Paciente paciente = pacienteService.buscarPorCpf(cpfPaciente);
+                    if (paciente == null) {
+                        System.out.println("Paciente não encontrado.");
+                        break;
+                    }
+
+                    System.out.print("Digite o CRM do médico: ");
+                    String crm = scanner.nextLine();
+                    Medico medico = medicoService.buscarPorCrm(crm);
+                    if (medico == null) {
+                        System.out.println("Médico não encontrado.");
+                        break;
+                    }
+
+                    System.out.print("Digite o número do quarto: ");
+                    String numero = scanner.nextLine();
+                    Quarto quarto = quartoService.buscarPorNumero(numero);
+                    if (quarto == null || !quarto.verificarDisponibilidade()) {
+                        System.out.println("Quarto inválido ou sem vagas.");
+                        break;
+                    }
+
+                    Internacao internacao = new Internacao(paciente, medico, quarto);
+                    internacaoService.internar(internacao);
+                    System.out.println("Paciente internado com sucesso.");
                     break;
-                case 2:
-                    listarInternados();
+                }
+
+                case 2: {
+                    List<Internacao> internados = internacaoService.listarInternacaoAtiva();
+                    if (internados.isEmpty()) {
+                        System.out.println("Nenhum paciente internado.");
+                    } else {
+                        for (Internacao i : internados) {
+                            System.out.println(i.getPaciente().getNome() + " - Quarto: " + i.getQuarto().getNumero());
+                        }
+                    }
                     break;
-                case 3:
-                    darAlta(scanner);
+                }
+
+                case 3: {
+                    System.out.print("Digite o CPF do paciente para dar alta: ");
+                    String cpf = scanner.nextLine();
+                    boolean sucesso = internacaoService.darAlta(cpf);
+                    if (sucesso) {
+                        System.out.println("Alta registrada com sucesso.");
+                    } else {
+                        System.out.println("Paciente não encontrado ou já teve alta.");
+                    }
                     break;
-                case 4:
-                    atualizarEstadoDeSaude(scanner);
+                }
+
+                case 4: {
+                    System.out.print("Digite o CPF do paciente: ");
+                    String cpf = scanner.nextLine();
+
+                    System.out.print("Nova gravidade (1-5): ");
+                    int gravidade = scanner.nextInt();
+                    scanner.nextLine();
+
+                    System.out.print("Descrição do estado de saúde: ");
+                    String descricao = scanner.nextLine();
+
+                    boolean sucesso = internacaoService.atualizarEstadoDeSaudeDoPaciente(cpf, gravidade, descricao);
+                    if (sucesso) {
+                        System.out.println("Estado de saúde atualizado com sucesso.");
+                    } else {
+                        System.out.println("Paciente não encontrado ou não está internado.");
+                    }
                     break;
+                }
+
                 case 0:
                     return;
+                    
                 default:
                     System.out.println("Opção inválida.");
             }
-        }
-    }
-
-    private void internarPaciente(Scanner scanner) {
-        System.out.print("Digite o CPF do paciente: ");
-        String cpfPaciente = scanner.nextLine();
-        Paciente paciente = pacienteService.buscarPorCpf(cpfPaciente);
-        if (paciente == null) {
-            System.out.println("Paciente não encontrado.");
-            return;
-        }
-
-        System.out.print("Digite o CRM do médico: ");
-        String crm = scanner.nextLine();
-        Medico medico = medicoService.buscarPorCrm(crm);
-        if (medico == null) {
-            System.out.println("Médico não encontrado.");
-            return;
-        }
-
-        System.out.print("Digite o número do quarto: ");
-        String numero = scanner.nextLine();
-        Quarto quarto = quartoService.buscarPorNumero(numero);
-        if (quarto == null || quarto.getVagas() == 0) {
-            System.out.println("Quarto inválido ou sem vagas.");
-            return;
-        }
-
-        Internacao internacao = new Internacao(paciente, medico, quarto);
-        internacaoService.internar(internacao);
-        System.out.println("Paciente internado com sucesso.");
-    }
-
-    private void listarInternados() {
-        List<Internacao> internados = internacaoService.listarInternacaoAtiva();
-        if (internados.isEmpty()) {
-            System.out.println("Nenhum paciente internado.");
-        } else {
-            for (Internacao i : internados) {
-                System.out.println(i.getPaciente().getNome() + " - Quarto: " + i.getQuarto().getNumero());
-            }
-        }
-    }
-
-    private void darAlta(Scanner scanner) {
-        System.out.print("Digite o CPF do paciente para dar alta: ");
-        String cpf = scanner.nextLine();
-        boolean sucesso = internacaoService.darAlta(cpf);
-        if (sucesso) {
-            System.out.println("Alta registrada com sucesso.");
-        } else {
-            System.out.println("Paciente não encontrado ou já teve alta.");
-        }
-    }
-
-    private void atualizarEstadoDeSaude(Scanner scanner) {
-        System.out.print("Digite o CPF do paciente: ");
-        String cpf = scanner.nextLine();
-
-        System.out.print("Nova gravidade (1-5): ");
-        int gravidade = scanner.nextInt();
-        scanner.nextLine();
-
-        System.out.print("Descrição do estado de saúde: ");
-        String descricao = scanner.nextLine();
-
-        boolean sucesso = internacaoService.atualizarEstadoDeSaudeDoPaciente(cpf, gravidade, descricao);
-        if (sucesso) {
-            System.out.println("Estado de saúde atualizado com sucesso.");
-        } else {
-            System.out.println("Paciente não encontrado ou não está internado.");
         }
     }
 }
