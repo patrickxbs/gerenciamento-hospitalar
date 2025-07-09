@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface MedicoRepository {
 
-    void salvarMedico(Medico medico);
+    Medico salvarMedico(Medico medico);
 
     List<Medico> listarMedicos();
 

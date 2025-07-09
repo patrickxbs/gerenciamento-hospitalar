@@ -11,18 +11,14 @@ public class PacienteRepositoryImpl implements PacienteRepository {
     List<Paciente> pacientes = new ArrayList<>();
 
     @Override
-    public void salvarPaciente(Paciente paciente) {
+    public Paciente salvarPaciente(Paciente paciente) {
         pacientes.add(paciente);
+        return paciente;
     }
 
     @Override
     public List<Paciente> listarPacientes() {
         return pacientes;
-    }
-
-    @Override
-    public void removerPacienteDeAlta(Paciente paciente) {
-        pacientes.remove(paciente);
     }
 
     @Override

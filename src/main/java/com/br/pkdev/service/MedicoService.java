@@ -14,8 +14,8 @@ public class MedicoService {
         this.medicoGateway = medicoGateway;
     }
 
-    public void salvarMedico(Medico medico) {
-        medicoGateway.salvarMedico(medico);
+    public Medico salvarMedico(Medico medico) {
+        return medicoGateway.salvarMedico(medico);
     }
 
     public List<Medico> listarMedicos() {

@@ -88,5 +88,13 @@ public class Quarto {
         return Objects.hashCode(numero);
     }
 
-
+    @Override
+    public String toString() {
+        return "Quarto{" +
+                "numero='" + numero + '\'' +
+                ", capacidadeTotal=" + capacidadeTotal +
+                ", vagas=" + vagas +
+                ", tipoQuarto=" + tipoQuarto +
+                '}';
+    }
 }

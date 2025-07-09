@@ -6,11 +6,9 @@ import java.util.List;
 
 public interface PacienteRepository {
 
-    void salvarPaciente(Paciente paciente);
+    Paciente salvarPaciente(Paciente paciente);
 
     List<Paciente> listarPacientes();
-
-    void removerPacienteDeAlta(Paciente paciente);
 
     void removerPaciente(String cpf);
 }

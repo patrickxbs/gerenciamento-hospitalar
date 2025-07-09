@@ -12,8 +12,9 @@ public class MedicoRepositoryImpl implements MedicoRepository {
     List<Medico> medicos = new ArrayList<>();
 
     @Override
-    public void salvarMedico(Medico medico) {
+    public Medico salvarMedico(Medico medico) {
         medicos.add(medico);
+        return medico;
     }
 
     @Override

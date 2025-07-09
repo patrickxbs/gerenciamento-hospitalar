@@ -52,6 +52,16 @@ public class Paciente extends Pessoa{
         this.estadoDeSaude = estadoDeSaude;
     }
 
+    public void atualizarDadosDeSaude(Integer novaGravidade, String novoEstadoDeSaude) {
+        if (novaGravidade != null && novaGravidade >= 0) {
+            this.gravidade = novaGravidade;
+        }
+        if (novoEstadoDeSaude != null && !novoEstadoDeSaude.isBlank()) {
+            this.estadoDeSaude = novoEstadoDeSaude;
+        }
+    }
+
+
     @Override
     public void apresentarDados() {
         super.apresentarDados();
