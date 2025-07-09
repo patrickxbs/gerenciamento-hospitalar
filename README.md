@@ -11,6 +11,6 @@ Este projeto é uma aplicação Java simples que simula o gerenciamento de um ho
 
 # 📌 Diagrama de classes
 
-![Diagrama de Classe](documentacao/diagrama_de_classe_hospital.png)
+![Diagrama de Classe](documentacao/diagrama_de_classe_hospital_novo.jpeg)
 
 
